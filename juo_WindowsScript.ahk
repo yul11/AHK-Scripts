@@ -4,7 +4,7 @@ loop
 	if WinExist("ahk_exe xplorer2_64.exe"){
 		WinActivate, ahk_exe xplorer2_64.exe
 		WinMove, -2554, 1055
-		WinSet, Transparent, 100
+		WinSet, Transparent, 100	
 		WinActivate, ahk_exe xplorer2_64.exe
 		Sleep, 200
 		WinSet, Transparent, 255
@@ -12,8 +12,8 @@ loop
 		Sleep, 200
 	}
 	else{	
-		Run, xplorer2_64.exe, P:\Explorer2
-		Sleep, 2000
+		Run, xplorer2_64.exe, P:\Explorer2	
+		Sleep, 2000	
 	}
 	y++
 	if (y=3)
@@ -30,11 +30,11 @@ loop
 		WinActivate, ahk_exe notepad++.exe
 		WinMove, -2554, 0
 		WinSet, Transparent, 100
-		WinActivate, ahk_exe xplorer2_64.exe
+		WinActivate, ahk_exe notepad++.exe
 		Sleep, 200
 		WinSet, Transparent, 255
-		WinActivate, ahk_exe xplorer2_64.exe
-		Sleep, 200
+		WinActivate, ahk_exe notepad++.exe
+		Sleep, 200	
 	}
 	else{	
 		Run, notepad++.exe, P:\Notepad++
@@ -42,22 +42,65 @@ loop
 	}
 	x++
 	if (x=3)
-	{
+	{	
 		break
 	}
 }
 
 
-XButton1::
+z=0
+zz=0
+loop
 {
-	Send {Alt down}{Tab}
-	Sleep, 4000
-	Send {Alt up}{Tab}
-}	
+	if WinActive("ahk_exe xplorer2_64.exe"){
+	
+		if (z<3){
+			WinActivate, ahk_exe xplorer2_64.exe
+			WinMove, -2554, 1055
+			WinSet, Transparent, 100	
+			WinActivate, ahk_exe xplorer2_64.exe
+			Sleep, 200
+			WinSet, Transparent, 255
+			WinActivate, ahk_exe xplorer2_64.exe
+			Sleep, 200
+			z++			
+		}
+	}
+	else
+	   z=0
+
+	if WinActive("ahk_exe notepad++.exe"){
+	
+		if (zz<3){
+			WinActivate, ahk_exe notepad++.exe
+			WinMove, -2554, 0
+			WinSet, Transparent, 100	
+			WinActivate, ahk_exe notepad++.exe
+			Sleep, 200
+			WinSet, Transparent, 255
+			WinActivate, ahk_exe notepad++.exe
+			Sleep, 200
+			zz++			
+		}
+	}
+	else
+	   zz=0	
+}
 
 
 
-		::mfg::Mit freundlichen Grüßen {enter}Jürgen Obermeier {enter}Kiefernstr. 10 {enter}86567 Tandern
+	
+
+~Ctrl & Shift::
+Send ^S
+return
+
+
+XButton1::AltTab
+
+
+
+::mfg::Mit freundlichen Grüßen {enter}Jürgen Obermeier {enter}Kiefernstr. 10 {enter}86567 Tandern
 
 ~Numpad0 & Numpad1::
 MsgBox, computer will go into suspend-mode now
@@ -105,3 +148,12 @@ return
 
 WinGet, a, ID, ahk_class ConsoleWindowClass
 FileAppend, %a%`n, D:\testing.txt
+
+
+
+;XButton1::
+;{
+;	Send {Alt down}{Tab}
+;	Sleep, 4000
+;	Send {Alt up}
+;}	
